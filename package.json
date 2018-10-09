@@ -15,5 +15,9 @@
   "devDependencies": {
     "mdx-deck": "^1.6.7"
   },
-  "name": "my-presentation"
+  "name": "my-presentation",
+  "dependencies": {
+    "mdx-deck-code-surfer": "^0.5.1",
+    "raw-loader": "^0.5.1"
+  }
 }
