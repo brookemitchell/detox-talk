@@ -15,13 +15,6 @@ export { comic as theme } from 'mdx-deck/themes'
 - Apologies to those that aren't big emoji users.
 - Tbh I don't usually, but they are one of the fastest ways to help a few slides look slightly less boring.
 ```
-
----
-
-```notes
-- Heres a dorky image of my face to help with that too.
-```
-
 ---
 
 # Days of drama 🙁
@@ -104,12 +97,9 @@ Brooke Mitchell (he/him) - <brooke@asknice.ly>
 
   <Appear>
 			<h3> Gray box end-to-end testing and automation library for mobile apps </h3>
-			<br />
-			<div> rewind that 👈 </div>
 			<div> automation library ⁉ </div>
 			<div> end-to-end testing ⁉⁉⁉⁉⁉⁉</div>
 			<div> Gray box ⁉⁉⁉⁉⁉⁉⁉⁉⁉⁉⁉ </div>
-			<div> Now in order of confusion 👉</div>
   </Appear>
 
 
@@ -150,16 +140,36 @@ Brooke Mitchell (he/him) - <brooke@asknice.ly>
 ---
 # Pyramid of boredom 😪
 
-![](https://s3-us-west-2.amazonaws.com/detox-talk/testing_pyramid.png)
+  ![](https://s3-us-west-2.amazonaws.com/detox-talk/testing_pyramid.png)
 
 ```notes
 		- Pyramid of boredom
 		- Part of the late popularity of this idea. is back in 2012 google put up a blog post that the optimum ratio of unit/Integration/e2e is 70%/20%/10%
-		- There is some disagreement, but it is a good idea to avoid getting stuck doing too much in e2e tests
+```
+---
+# Pyramid of boredom 😅
+
+<Appear>
+	<h3>  Just joking - this is how I work </h3>
+</Appear>
+
+```notes
 		- Dont have time to really go into it here, but a tool like detox is never going to be fast,
+			- There is some disagreement, but it is a good idea to avoid getting stuck doing too much in e2e tests
 			- it can be a lot less painful to use than other e2e testing.
 			- Anyone thats tried some popular solutions for web testing knows how painful it can be
 ```
+---
+# Other views 🤔
+![](./images/write_tests.png)
+
+---
+# Other views 🤔
+<div>
+	<Image src="./images/testing_trophy.png" width="525px" height="525px" />
+</div>
+<a href="https://blog.kentcdodds.com/write-tests-not-too-many-mostly-integration-5e8c7fff591c">Kent C. Dodds</a>
+
 ---
 
 <CodeSurfer title="Unit" code={require("!raw-loader!./code_examples/unit_test.js")} />
@@ -195,6 +205,10 @@ Brooke Mitchell (he/him) - <brooke@asknice.ly>
 	element.id('internal-test-id');
 ```
 
+```notes
+- How did we know about these special ids'
+- Its because we are.... gray box testing
+```
 ---
 # Grey box  - Earl Grey 🍵
 
@@ -220,13 +234,36 @@ Brooke Mitchell (he/him) - <brooke@asknice.ly>
 	- It's not perfect
 ```
 ---
-# So What is Detox  ?!?
+# Now we know Detox 🎓
 
 - Gray box end-to-end testing (and automation) for mobile apps
 
 ---
+# Now we know Detox 🎓
+
+- Some final reflections:
+<Appear>
+	<ul>
+<li> Is Detox e2e or integration? 🤔</li>
+<li> Detox has its own mocking feature,</li>
+<li> You can mock out a file by placing a .e2e.js file next to it</li>
+</ul>
+</Appear>
+
+```notes
+- Detox event has its own mocking feature, which will pick up mocks of .e2e.js calls
+- You can mock api calls to always return expected responses
+- Start to blur the lines between integration and e2e tests --- if we want to.
+```
+
+---
 # Demo Time 🕶
 
+
+---
+# Other Talks to watch 🎥
+
+<https://www.youtube.com/watch?v=aMheT1qL5Lk>
 
 ---
 
