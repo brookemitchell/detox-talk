@@ -1,16 +1,15 @@
-import { CheckoutComponent } from "components";
-
-test("Calls a very important function with the cart contents when pressed", () => {
+test("When 'Buy Now' pressed - call checkoutHandler", () => {
+  // Given
   const checkoutHandler = jest.fn();
   const itemsInCart = ["peas", "porridge"];
-
-  // Given
   const componentInstance = (
-    <MyFavoutiteComponent onPress={checkoutHandler} itemsInCart={itemsInCart} />
+    <Cart onPress={checkoutHandler} itemsInCart={itemsInCart} />
   );
 
   // When
-  render(componentInstance).simulate("press");
+  render(componentInstance)
+    .find({ text: "BUY NOW" })
+    .simulate("press");
 
   //Then
   expect(checkoutHandler).toBeCalledWith(itemsInCart);
