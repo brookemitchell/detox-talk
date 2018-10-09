@@ -7,20 +7,49 @@ export { comic as theme } from 'mdx-deck/themes'
   <title>Detox your apps</title>
 </Head>
 
-
 # Hello 🌊 👋
 
 ```notes
 - Kia Ora kou tou - Ko Brooke Mitchell ahau.
-- Once upon a time
+- This is me waving hello
+- Apologies to those that aren't big emoji users.
+- Tbh I don't usually, but they are one of the fastest ways to help a few slides look slightly less boring.
+```
+
+---
+
+```notes
+- Heres a dorky image of my face to help with that too.
+```
+
+---
+
+# Days of drama 🙁
+
+<Appear> <li> App Release Day 🌊🌩 </li> </Appear>
+
+<!-- Image of apple store submission -->
+
+```notes
+- I want to tell you what used to be the most trying days at work (Press Down) - App submission day
+- Once I used to keep a long boring checklist of things to do before an app store submission.
+- Test login, send a reply, create a notification, open a dynamic link.
+- It was time consuming and could easily take a day or two.
+- You've also had the experience of nervousness as to whether you new 'feature' is really a regression.
+- And have felt the anxiety of an App Store release that passed review, but broke core some core piece of functionality.
+- I have done all those things.
+- This talk is about showing you the steps you can take to relax a little,
 - I'll tell you the most important thing about making sure your app survives constant change
-- Problem that audience focuses, as question
+- Right now I'll often update an app multiple times a day without much drama.
+- One of ways to do that is:
 ```
 ---
 
 # Detox your apps ☣
 
-<Appear> <h1> Explore your apps 🗺  </h1> </Appear>
+<Appear>
+	<h1> Explore your apps 🗺  </h1>
+</Appear>
 
 ```notes
 - This is a talk about using a tools name detox to end to end test your react native applications
@@ -32,7 +61,11 @@ export { comic as theme } from 'mdx-deck/themes'
 - More appropriate talk title is - It's time to deeply explore the critical path of your app from a users point of view
 - Which isn't the greatest name, so we'll just stick with detox your apps
 ```
-
+---
+# Automate your quality assurance 🏆🍹🏝
+<Appear>
+	<h1> But dont forget to write unit tests too...</h1>
+</Appear>
 ---
 
 # About Me 💁
@@ -40,36 +73,43 @@ export { comic as theme } from 'mdx-deck/themes'
 Brooke Mitchell (he/him) - <brooke@asknice.ly>
 
   <Appear>
-		<img src='/images/an_logo.png'  />
+		<img src='https://s3-us-west-2.amazonaws.com/detox-talk/an_logo.png' />
   </Appear>
 
 ```notes
 - So about me:
 - I've been writing react native for about 2 years.
 - If you want to talk more about what I do, or talk about react native - drop me a line
+- I work for a company called AskNicely. We make customer experience software.
 ```
 ---
-<Image src="images/an_logo_phone.png" style={{position: 'relative', left: '-1px'}} />
+<Image src="https://s3-us-west-2.amazonaws.com/detox-talk/an_logo_phone.png"
+	style={{position: 'relative', top: '5px' }} />
 
 ```notes
-- I work for a company called AskNicely. We make customer experience software.
+- Here is an excellent piece of branding that looks nothing like the way way really work.
+	- Don't worry we dont really sit that close together
 - I've been writing react native for about 2 years.
 - We develop a mobile app that lets account manager check their surveys, get alerts and respond from mobile
 - Here is a quick demo of one of the detox test runs
-- Unfortunately its probably best that I show an approved video of this, incase I accedentailly tab into a part of the code base labelled 'super secret new feature'
+- Unfortunately its probably best that I show an approved video of this,
+  	- Incase I accedentailly tab into a part of the code base labelled 'super secret new feature'
+- We'll try running a live demo of detox later in the talk.
+	- Which for anyone that worked with previous end to end testing tools is pretty daring
+- Here is a sneek peek of one of our end to end test suites running -> show ask nicely demo video
 - So what's going on here? That brings us to this talk
 ```
-
 ---
 # Detox ! 🍾
 
   <Appear>
-			<li> Gray box end-to-end testing and automation library for mobile apps </li>
+			<h3> Gray box end-to-end testing and automation library for mobile apps </h3>
 			<br />
 			<div> rewind that 👈 </div>
 			<div> automation library ⁉ </div>
 			<div> end-to-end testing ⁉⁉⁉⁉⁉⁉</div>
 			<div> Gray box ⁉⁉⁉⁉⁉⁉⁉⁉⁉⁉⁉ </div>
+			<div> Now in order of confusion 👉</div>
   </Appear>
 
 
@@ -80,12 +120,26 @@ Brooke Mitchell (he/him) - <brooke@asknice.ly>
 ```
 
 ---
-# Lets talk about ✍<-->📱💁 testing
+# Automation 🤖
+  <Appear>
+	<li>Automate the brutally important checks you make before submitting</li>
+	<li>Only accept pull requests that pass</li>
+	<li>Submit a new version whenever they all pass</li>
+  </Appear>
+
+```notes
+- You can watch along
+- Then run in headless mode on something like a jenkins or travis server, using using a service like bitrise
+- That is another talk
+```
+
+---
+# Testing ✍📱💁
 
   <Appear>
-			<h2> Unit </h2>
-			<h2> Integration </h2>
-			<h2> End-to-End </h2>
+	<h2> Unit </h2>
+	<h2> Integration </h2>
+	<h2> End-to-End </h2>
   </Appear>
 
 ```notes
@@ -93,8 +147,19 @@ Brooke Mitchell (he/him) - <brooke@asknice.ly>
 		- No Test shame - any test is nearly always better than no test
 		- I think - The pyramid is a bit of a lie, but kind of like a useful fallacy
 ```
+---
+# Pyramid of boredom 😪
 
+![](https://s3-us-west-2.amazonaws.com/detox-talk/testing_pyramid.png)
 
+```notes
+		- Pyramid of boredom
+		- Part of the late popularity of this idea. is back in 2012 google put up a blog post that the optimum ratio of unit/Integration/e2e is 70%/20%/10%
+		- There is some disagreement, but it is a good idea to avoid getting stuck doing too much in e2e tests
+		- Dont have time to really go into it here, but a tool like detox is never going to be fast,
+			- it can be a lot less painful to use than other e2e testing.
+			- Anyone thats tried some popular solutions for web testing knows how painful it can be
+```
 ---
 
 <CodeSurfer title="Unit" code={require("!raw-loader!./code_examples/unit_test.js")} />
@@ -113,15 +178,57 @@ Brooke Mitchell (he/him) - <brooke@asknice.ly>
 
 ---
 
-<CodeSurfer title="END TO END!" code={require("!raw-loader!./code_examples/e2e_test.js")} />
+<CodeSurfer title="END TO END! 🎆🎇🎆" code={require("!raw-loader!./code_examples/e2e_test.js")} />
 
 ```notes
 - Look at code from users point of view
+- How did we know about these special ids'
+- Its because we are.... gray box testing
 ```
 ---
 
-# Grey box
+# Grey box 😁
 
+- Grey box is where the tester is allowed to know a little about the internal structure
+
+```jsx
+	element.id('internal-test-id');
+```
+
+---
+# Grey box  - Earl Grey 🍵
+
+- Detox depends on Earl Grey <https://github.com/google/EarlGrey>
+<Appear>
+<li> Earl grey knows when the UI is in a steady state. </li>
+<li> No ⏲ needed! </li>
+</Appear>
+
+```notes
+- They secret sauce in detox is Earl Gray (from Google)
+- Sorry about the green tea emoji
+- Could call it a very gray focu
+- That's usually the perfect time to check visual things
+```
+
+---
+
+<CodeSurfer title="END TO END!" code={require("!raw-loader!./code_examples/e2e_test.js")} />
+
+```notes
+	- Look, no timers!
+	- It's not perfect
+```
+---
+# So What is Detox  ?!?
+
+- Gray box end-to-end testing (and automation) for mobile apps
+
+---
+# Demo Time 🕶
+
+
+---
 
 ## Github Repos 💻
 
