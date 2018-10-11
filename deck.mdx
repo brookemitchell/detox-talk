@@ -11,30 +11,29 @@ export { comic as theme } from 'mdx-deck/themes'
 
 ```notes
 - Kia Ora kou tou - Ko Brooke Mitchell ahau.
+- Sorry I can't give a longer introduction, just had my first te reo class yesterday
+- Thanks Mido and to you all for having me on this rainy evening
 - This is me waving hello
-- Apologies to those that aren't big emoji users.
-- Tbh I don't usually, but they are one of the fastest ways to help a few slides look slightly less boring.
+- Apologies to anyone that isn't a big emoji fans.
+- To be honest I don't usually go for emojis at work, but they are one of the fastest ways to help a few slides look slightly less boring.
 ```
 ---
 
 # Bad days at work 🙁
 
-<Appear> <h1> App Release Day 🌊🌩 </h1> </Appear>
-
-<!-- Image of apple store submission -->
+<Appear>
+<h1> App Release Day 🌊🌩 </h1>
+<h1> Checklist time! ☑⏱☑⏱ </h1>
+ </Appear>
 
 ```notes
-- I want to tell you what used to be the most trying days at work (Press Down) - App submission day
-- Once I used to keep a long boring checklist of things to do before an app store submission.
-- Test login, send a reply, create a notification, open a dynamic link.
-- It was time consuming and could easily take a day or two.
-- You've also had the experience of nervousness as to whether you new 'feature' is really a regression.
-- And have felt the anxiety of an App Store release that passed review, but broke core some core piece of functionality.
-- I have done all those things.
-- This talk is about showing you the steps you can take to relax a little,
-- I'll tell you the most important thing about making sure your app survives constant change
-- Right now I'll often update an app multiple times a day without much drama.
-- One part of getting that confidence in the app is
+- I'm here to talk to you about improving one of the most boring days at work
+- It's not the company wide all hands to talk about the christmas party
+- Its (Press Down) - App release day - you go through a long checklist to ensure everything still works after you added 20 new features
+- You've likely also felt the annoyance of an App Store release that did get through, you forgot to check something and your users are annoyed
+- This talk is about showing some steps you can take to ease this pain with automated testing
+- With a good balance of testing techniques at work I've found we can often update an app multiple times a day without much drama.
+- One part of helping that happen is to (press right)
 ```
 ---
 
@@ -46,16 +45,12 @@ export { comic as theme } from 'mdx-deck/themes'
 </Appear>
 
 ```notes
-- There is a tools to automate those final crucial checks in you react native applications
-- Talk is called `Detox your apps` - That isn't the greatest name for a talk.
-- Why? 1st Because no one should consider their app toxic.
-- So anyway, I dont love the title of this talk, I think it should be
-- It's time to explore the critical path of your app from a users point of view
-- 2nd no one tool will save you from the messiness of writing a real app. Trust me.
-- We'll talk about some of my opinions on testing, and the best ways to use detox.
-- This is leading into a discussin of how to completely automate much more of your app delivery process.
+- Detox is a tool to automate those final crucial checks in you react native applications
+- What I'd like to show you is how to (press down)
+- Explore the critical parts of your app from a users point of view
+- We'll also talk about some of my opinions on testing, and the best ways to use detox.
+- Then once you think testing is as great as I do, we can talk about how to completely automate your app delivery process.
 - But thats another talk we can do another time.
-- Which isn't the greatest name, so we'll just stick with detox your apps
 ```
 ---
 
@@ -69,8 +64,9 @@ Brooke Mitchell (he/him) - <brooke@asknice.ly>
 
 ```notes
 - So about me:
-- I've been writing react native for about 2 years.
-- If you want to talk more about what I do, or talk about react native - drop me a line
+- My name is Brooke Mitchell
+- I've been writing React Native for about 2 years.
+- If you want to talk more about what we do, or talk about react native - drop me a line
 - I work for a company called AskNicely. We make customer experience software.
 ```
 ---
@@ -80,36 +76,19 @@ Brooke Mitchell (he/him) - <brooke@asknice.ly>
 ```notes
 - Here is an excellent piece of branding that looks nothing like the way way really work.
 	- Don't worry we dont really sit that close together
-- I develop a mobile app that lets account manager check their surveys, get alerts and respond from mobile
-- I'm abot  is a quick demo our app in one of the detox test runs (show demo!)
-- Unfortunately its probably best that I show a video of this,
-  	- Incase I accedentailly tab into a part of the code base labelled 'super secret new feature'
-- We'll try running a live demo of detox later in the talk.
-	- Which for anyone that worked with previous end to end testing tools is pretty daring
-		- A lot of times visual testing tools will fail in hilarious ways, getting a computer to act like a user is hard
+- We have a mobile app that lets customers check their surveys, get alerts and respond from mobile
+- I'll now give a quick demo our app in one of the detox test runs (show demo!)
+- So I dont bore you to death, Ill play a sped up video, with sound if possible
+- Haha now how likely do you think if I did the live demo is it that would have worked.
+- Well thanks to detox its actually pretty reliable, I did spot a few issues just then with our testing, so this talk has been useful.
 - So what's going on here? That brings us to this talk
-```
----
-# Automate regression testing 🏆🍹🏝
-<Appear>
-	<h3> But dont forget to write unit tests too...</h3>
-	<h1> Thanks to eyeliner music - buy here: <a href="https://disasteradio.bandcamp.com/album/buy-now">https://disasteradio.bandcamp.com</a></h1>
-</Appear>
-
-```notes
-- Right at the outset, this is a very seductive form of testing, it looks cool
-- But don't go overboard, think of it as the cherry on top
-- I even added cool music to show how great it is, thanks to eyeliner, you can buy their music here: https://disasteradio.bandcamp.com/ .
-- Sadly the musics isn't included in the app
-- Perfect for rewatching all your favourite tech demos
-- Ok so what is this amazing tool automating all our boring manual tests?
 ```
 ---
 # Detox ! 🍾
 
 <https://github.com/wix/Detox>
 <div>
-	<h3> Gray box end-to-end testing and automation library for mobile apps </h3>
+	<h1> Gray box end-to-end testing and automation library for mobile apps </h1>
 	<ul>
 	<Appear>
 		<li> automation library ⁉ </li>
@@ -129,22 +108,24 @@ Brooke Mitchell (he/him) - <brooke@asknice.ly>
 ---
 # Automation 🤖
   <Appear>
-	<h2>See user workflow before submission</h2>
+	<h2>Watch along 👓</h2>
 	<h2>Create Screenshots and videos 📼</h2>
-	<h2>Check pull requests</h2>
+	<h2>Check pull requests ✔</h2>
   </Appear>
 
 ```notes
-- Firstly a tool for automation
-- You can watch along with what youd normally do manually
+- Detox is firstly a tool for automation
+- As you saw earlier you can watch along with what youd normally do manually to check an app from a users point of view
 - Take video and screenshot for you app store submissions
 - Then run in headless mode on something like a jenkins or travis server, using using a service like bitrise
-- Check pull requests, thats the other talk I was refereencing
+- Run tests before you approve any pull requests, thats the other talk I was I'm yet to write
 
 ```
 
 ---
 # Testing ✍📱💁
+
+```expect(app).toBeAwesome();```
 
   <Appear>
 	<h2> Unit </h2>
@@ -153,13 +134,11 @@ Brooke Mitchell (he/him) - <brooke@asknice.ly>
   </Appear>
 
 ```notes
-- Seond part, end to end testing. Commonly people break things down into these three fundamental catagories of tests
-	- There are many more kinds (like performance, accessability, legacy)
+- Now the second part, testing. We dont want to just watch along, we have expectations and would like them met.
+- Commonly testers break their test style into these three catagories of tests
+	- There are many more ways of catagorising tests (like performance, accessability, legacy) we wont go into here
 - We are interested in end to end testing here, where you build the final product and tet it like a user would
-- I think Testing is an art, it might sound lame but I really enjoy testing
-- After a while it can become fun to think and strategize your approach before committing code
-- No Test shame - any test is nearly always better than no test
-- So when writing tests, there is a common recommendation about how many tests of each kind you should have.
+- So when writing these flavours of tests, there is a common recommendation about how many tests of each kind you should have. You may have seen this before, I call it (next slide)
 ```
 ---
 # Pyramid of boredom 😪
@@ -167,10 +146,12 @@ Brooke Mitchell (he/him) - <brooke@asknice.ly>
   ![](https://s3-us-west-2.amazonaws.com/rn-auckland-detox-talk/images/testing_pyramid.png)
 
 ```notes
-- These three approaches make up the Pyramid of boredom
-- I think - The pyramid is a bit of a lie, but kind of like a useful fallacy, you can write slow unit tests and fast integration tests, and blend elements together
-- This recommendation emerged because there was a common mistake to see companies overly focused on manual testing and end to end testing
-- So back in - (2012?) google put out a now famous blog post that popularized the now common idea optimum ratio of unit/Integration/e2e is 70%/20%/10%
+- so I tend to think of this as the quantity and order of your tests, starting at the bottom.
+- I'm being a bit mean calling it the pyramid of boredom but I mean that more in the sense of, this is a good way to do things, and it works.
+- I also think - The pyramid is a bit of a lie, often tests dont fit neatly into these catagories, but its kind of like a useful fallacy,
+- Part of the reason this recommendation emerged because there was a common mistake to see companies overly focused on manual testing and end to end testing
+- So back in (2011? - maybe) google put out a blog post that popularized common idea that the optimum ratio of unit/Integration/e2e is 70%/20%/10%
+- I think thats how this happened - but dont believe everything I say
 - next slide
 ```
 ---
@@ -181,24 +162,17 @@ Brooke Mitchell (he/him) - <brooke@asknice.ly>
 </Appear>
 
 ```notes
-- I think following the pyramid is still really good advice
-- Dont have time to really go into it here, but a tool like detox is never going to be fast,
-	- In he time I run these (sped up) demos, could probably get through 1000 or more unit tests
-	- its a good idea to avoid getting stuck doing too much in e2e tests
-	- but when it is time to write e2e tests, I want to recommend detox
-	- why - it's closer to an integration test while still having all the visual flashy bits.
-	- ill explain more shortly
+- It's still really good advice
+- Dont have time to really go into it here, but a tool like detox is never going to as fast as a unit test,
+- In the time I run these (sped up) demos, could probably get through 1000 or more unit tests
+- e2e tests also used take a long time to write, and were very hard to fix when broken
+- but when it is time to write e2e tests, you should consider detox
+- ill very quickly mention some other approaches to testing, just to point out not everyone agrees
 ```
 ---
 # Other views 🤔
 ![](https://s3-us-west-2.amazonaws.com/rn-auckland-detox-talk/images/write_tests.png)
 
-```notes
-- Very quickly point out some other approaches
-- I think a lot of this is happending because no teveryone loves test driven development
-- And in react if you are careful you can write some good integration tests
-- Now lets go over what all these flavours of test look like
-```
 ---
 # Other views 🤔
 <div>
@@ -206,20 +180,27 @@ Brooke Mitchell (he/him) - <brooke@asknice.ly>
 </div>
 <a href="https://blog.kentcdodds.com/write-tests-not-too-many-mostly-integration-5e8c7fff591c">Kent C. Dodds</a>
 
+```notes
+- I think a lot of this is happending because not everyone loves test driven development
+- And with libraries like react if you are careful you can write some fast integration tests
+- Now lets go over what all those three flavours of test might look like
+```
 ---
 
 <CodeSurfer title="Unit" code={require("!raw-loader!./code_examples/unit_test.js")} />
 
 ```notes
-- Look at code from functions point of view
-- Input -> Output
+- I've made up some toy examples of what I think a good test in each catagory would look like
+- In unit tests you explore the at code from functions point of view
+- Unit tests should be very small, very fast
+- All we care about is Input -> Output
 ```
 ---
 
 <CodeSurfer title="Integration" code={require("!raw-loader!./code_examples/integration_test.js")} />
 
 ```notes
-- Look at code from developers point of view, using a component
+- Now integration tests explore code from developers point of view, like how you interact with a component
 ```
 
 ---
@@ -228,25 +209,29 @@ Brooke Mitchell (he/him) - <brooke@asknice.ly>
 
 ```notes
 - Look at code from users point of view
-- It's a bit like you are stadning behind a person at the computer telling them what to click on
-- How did we know about these special ids'
-- Its because we are.... gray box testing
+- It's a bit like you are standing behind a person at the computer telling them what to click on
+- How come there are these weird IDs we are using. and how did we know the homepage was ready in the last line?
+- Its because when using Detox we are.... gray box testing
 ```
 ---
 
 # Grey box 😁
 
-- Grey box is where the tester is allowed to know a little about the internal structure
+- The tester knows a little about the code
 
 ```jsx
 	element.id('internal-test-id');
 ```
 	<Appear>
-	<h1> How did we know a network request has finished before clicking? </h1>
-	<h1> What about timers and pixels? </h1>
+	<h1> How do we know a network request has finished before clicking? </h1>
+	<h1> What about timers and finding modals? </h1>
 	</Appear>
 
 ```notes
+- What is grey box testing (read slide)
+- But when we look at the end to end test with detox, this seems too easy. (press down)
+- Read slides
+
 ```
 ---
 # Grey box  - Earl Grey 🍵
@@ -275,7 +260,7 @@ Brooke Mitchell (he/him) - <brooke@asknice.ly>
 <CodeSurfer title="END TO END!" code={require("!raw-loader!./code_examples/e2e_test.js")} />
 
 ```notes
-	- Look, no timers!
+	- Look, no timers!, no searching for the third view after the second textinput
 	- It's not perfect
 ```
 ---
@@ -284,32 +269,22 @@ Brooke Mitchell (he/him) - <brooke@asknice.ly>
 - Gray box end-to-end testing (and automation) for mobile apps
 
 ```notes
-- Some final reflections: - Detox is no silver bullet . No silver bullet
-- There is no escaping the nightmare
-- It's a marathon not a sprint
-- Automated UI testing has a huge number of trade offs, and I wouldnt always recommend it
-- Too many of these tests are just too slow, I can easily run about 1000 unit tests in the same time
+- There is only other feature of detox I think I should mention
 ```
----
-# Now we know Detox 🎓
-
-
 ---
 
 # Mocking 👻
 ![](https://s3-us-west-2.amazonaws.com/rn-auckland-detox-talk/images/api_mock.png)
 
 <div>
-	<ul>
-		<Appear>
-			<li> Detox has its own mocking feature,</li>
-			<li> You can mock out a file by placing a .e2e.js file next to it</li>
-		</Appear>
-	</ul>
+<Appear>
+	<h3> Detox has its own mocking feature,</h3>
+	<h3> You can mock out a file by placing a .e2e.js file next to it</h3>
+</Appear>
 </div>
 
 ```notes
-- One more things
+- Few more added extras.
 - Detox has its own mocking feature, which will pick up mocks of .e2e.js calls
 - You can mock api calls to always return expected responses
 - Start to blur the lines between integration and e2e tests --- if we want to.
@@ -318,17 +293,83 @@ Brooke Mitchell (he/him) - <brooke@asknice.ly>
 ---
 # Demo Time 🕶
 
+```notes
+- These are the tests that detox runs against itself
+- If you look closely you'll see a few tests, I think that tells you something about e2e testing
+```
 ---
 # Learn how Detox works 📔
 
 - [How Detox Works: Official Docs](https://github.com/wix/detox/blob/master/docs/Introduction.HowDetoxWorks.md)
 
 ---
+# Bonus Questions ✋🎓
+
+- How does detox compare to other frameworks like Appium?
+<Appear>
+<h1> (can someone please tell me after this) </h1>
+</Appear>
+
+---
+# Bonus Questions ✋🎓
+
+- Whats bad about detox?
+<Appear>
+<h1> (it might be too cool) </h1>
+</Appear>
+
+```notes
+- its not the hammer for every situation
+```
+---
+# Bonus Questions ✋🎓
+
+- Does it work on Android?
+<Appear>
+<h1> (sorta - it used to) </h1>
+	- Several compatibility issues with React Native >= 0.50. See #608 for details. 😱
+</Appear>
+
+```notes
+- Runs Espresso testing library, which lets you do grey box
+```
+---
+# Bonus Questions ✋🎓
+
+- Does it work with Continuous Integration?
+
+<Appear>
+<h1>
+ (It's built for CI first, normal run mode === headless)
+ </h1>
+</Appear>
+
+```notes
+- Its biggest strength
+- We run it on bitrise
+```
+---
+# Bonus Questions ✋🎓
+
+- Do tests have to be written in JavaScript?
+
+<Appear>
+<h1> (I think so. Otherwise you'd just use Earl Grey) </h1>
+<h1> (But your app DOESN'T HAVE TO BE IN REACT NATIVE) </h1>
+<h1> see: <a href="https://github.com/wix/Detox/blob/master/examples/demo-native-ios"> https://github.com/wix/Detox/blob/master/examples/demo-native-ios </a> </h1>
+</Appear>
+
+---
+
 # Other Talks to watch 🎥
 ## Both by Rotem Mizrachi-Meidan @ Wix
 - [Detox: A year in. Building it, Testing with it](https://www.youtube.com/watch?v=aMheT1qL5Lk)
 - [Graybox E2E Tests Library for React Native](https://www.youtube.com/watch?v=GgFFeI70PWw)
 
+```notes
+- If you are interested in detox these are some much better talks than mine to watch
+- Rotem is the team lead and one of the developers
+```
 
 ---
 
@@ -336,3 +377,24 @@ Brooke Mitchell (he/him) - <brooke@asknice.ly>
 
 - Talk - <https://github.com/brookemitchell/detox-talk>
 - Example App - <https://github.com/brookemitchell/example-detox-app>
+
+---
+
+# Detox! 🏆🍹🏝
+<Appear>
+	<h3> very cool but no silver bullet </h3>
+	<h3> dont forget to write other tests too...</h3>
+	<h1> Thanks to eyeliner music - buy here: <a href="https://disasteradio.bandcamp.com/album/buy-now">https://disasteradio.bandcamp.com</a></h1>
+</Appear>
+
+```notes
+- Some final reflections: - Detox is no silver bullet . Theres a famous paper called no silver bullet I encourage you to read
+- Mostly because I never have, so you can tell me about it
+- Right at the outset, this is a very seductive form of testing, it looks cool
+- but don't go overboard, think detox as the cherry on top of a well tested app
+- I even added cool music to show how great it is, thanks to eyeliner, you can buy their music here
+- Automated UI testing has a huge number of trade offs, and I wouldnt always recommend it
+- Too many of these tests are just too slow, I can easily run about 1000 unit tests in the same time
+- Ok so what is this amazing tool automating all our boring manual tests?
+	- why - I think it's because you get something closer to an integration test while still having all the visual flashy bits.
+```
